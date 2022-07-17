@@ -1,0 +1,95 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/PreviewSelect.gd" type="Script" id=1]
+
+[node name="PreviewSelect" type="ConfirmationDialog"]
+visible = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+window_title = "Choose Track(s)"
+resizable = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+
+[node name="Main" type="VBoxContainer" parent="MainMargin"]
+margin_right = 584.0
+margin_bottom = 556.0
+
+[node name="TrackView" type="Tree" parent="MainMargin/Main"]
+margin_right = 584.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+hide_folding = true
+hide_root = true
+select_mode = 1
+
+[node name="Filter" type="LineEdit" parent="MainMargin/Main"]
+margin_top = 254.0
+margin_right = 584.0
+margin_bottom = 278.0
+
+[node name="Buttons" type="HBoxContainer" parent="MainMargin/Main"]
+margin_top = 282.0
+margin_right = 584.0
+margin_bottom = 302.0
+
+[node name="Spacer0" type="Control" parent="MainMargin/Main/Buttons"]
+margin_right = 116.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="AddTrack" type="Button" parent="MainMargin/Main/Buttons"]
+margin_left = 120.0
+margin_right = 194.0
+margin_bottom = 20.0
+text = "Add Track"
+
+[node name="RemoveTrack" type="Button" parent="MainMargin/Main/Buttons"]
+margin_left = 198.0
+margin_right = 299.0
+margin_bottom = 20.0
+text = "Remove Track"
+
+[node name="MoveUp" type="Button" parent="MainMargin/Main/Buttons"]
+margin_left = 303.0
+margin_right = 372.0
+margin_bottom = 20.0
+text = "Move Up"
+
+[node name="MoveDown" type="Button" parent="MainMargin/Main/Buttons"]
+margin_left = 376.0
+margin_right = 463.0
+margin_bottom = 20.0
+text = "Move Down"
+
+[node name="Spacer1" type="Control" parent="MainMargin/Main/Buttons"]
+margin_left = 467.0
+margin_right = 584.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+
+[node name="TrackList" type="ItemList" parent="MainMargin/Main"]
+margin_top = 306.0
+margin_right = 584.0
+margin_bottom = 556.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="text_changed" from="MainMargin/Main/Filter" to="." method="show_songs"]
+[connection signal="pressed" from="MainMargin/Main/Buttons/AddTrack" to="." method="_add_track_to_list"]
+[connection signal="pressed" from="MainMargin/Main/Buttons/RemoveTrack" to="." method="_remove_track_from_list"]
+[connection signal="pressed" from="MainMargin/Main/Buttons/MoveUp" to="." method="_move_track_up"]
+[connection signal="pressed" from="MainMargin/Main/Buttons/MoveDown" to="." method="_move_track_down"]
+[connection signal="item_selected" from="MainMargin/Main/TrackList" to="." method="_set_active_index"]

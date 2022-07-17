@@ -1,0 +1,298 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scripts/BlockLength.gd" type="Script" id=1]
+[ext_resource path="res://scripts/TrackView.gd" type="Script" id=2]
+[ext_resource path="res://scripts/Main.gd" type="Script" id=3]
+[ext_resource path="res://scenes/TrackSelect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scripts/GHABE.gd" type="Script" id=5]
+[ext_resource path="res://scripts/ElementView.gd" type="Script" id=6]
+[ext_resource path="res://scenes/PreviewSelect.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scripts/StyleSelect.gd" type="Script" id=8]
+[ext_resource path="res://assets/marquee.png" type="Texture" id=9]
+
+[sub_resource type="Theme" id=1]
+
+[node name="GHABE" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 1 )
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MainMargin" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="VBoxContainer" parent="MainMargin"]
+margin_right = 600.0
+margin_bottom = 580.0
+script = ExtResource( 3 )
+
+[node name="Marquee" type="HBoxContainer" parent="MainMargin/Main"]
+margin_right = 600.0
+margin_bottom = 50.0
+
+[node name="Spacer0" type="Control" parent="MainMargin/Main/Marquee"]
+margin_right = 6.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="Banner" type="TextureRect" parent="MainMargin/Main/Marquee"]
+margin_left = 10.0
+margin_right = 590.0
+margin_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource( 9 )
+
+[node name="Spacer1" type="Control" parent="MainMargin/Main/Marquee"]
+margin_left = 594.0
+margin_right = 600.0
+margin_bottom = 50.0
+size_flags_horizontal = 3
+
+[node name="ElementContainer" type="HBoxContainer" parent="MainMargin/Main"]
+margin_top = 54.0
+margin_right = 600.0
+margin_bottom = 322.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ElementView" type="ItemList" parent="MainMargin/Main/ElementContainer"]
+margin_right = 446.0
+margin_bottom = 268.0
+size_flags_horizontal = 3
+script = ExtResource( 6 )
+
+[node name="Buttons" type="VBoxContainer" parent="MainMargin/Main/ElementContainer"]
+margin_left = 450.0
+margin_right = 600.0
+margin_bottom = 268.0
+
+[node name="AddSong" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_right = 150.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 0 )
+text = "Add Song"
+
+[node name="AddAdvert" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 24.0
+margin_right = 150.0
+margin_bottom = 44.0
+rect_min_size = Vector2( 120, 0 )
+text = "Add Advert"
+
+[node name="AddPreview" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 48.0
+margin_right = 150.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 120, 0 )
+text = "Add Preview"
+
+[node name="Spacer0" type="Control" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 72.0
+margin_right = 150.0
+margin_bottom = 72.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="EditElement" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 76.0
+margin_right = 150.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 120, 0 )
+text = "Edit Element"
+
+[node name="RemoveElement" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 100.0
+margin_right = 150.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 120, 0 )
+text = "Remove Element"
+
+[node name="MoveElementUp" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 124.0
+margin_right = 150.0
+margin_bottom = 144.0
+rect_min_size = Vector2( 120, 0 )
+text = "Move Element Up"
+
+[node name="MoveElementDown" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 148.0
+margin_right = 150.0
+margin_bottom = 168.0
+rect_min_size = Vector2( 150, 0 )
+text = "Move Element Down"
+
+[node name="Spacer1" type="Control" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 172.0
+margin_right = 150.0
+margin_bottom = 172.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LoadShowblock" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 176.0
+margin_right = 150.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 120, 0 )
+text = "Load Showblock"
+
+[node name="SaveShowblock" type="Button" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 200.0
+margin_right = 150.0
+margin_bottom = 220.0
+rect_min_size = Vector2( 120, 0 )
+text = "Save Showblock"
+
+[node name="ChannelSelect" type="OptionButton" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 224.0
+margin_right = 150.0
+margin_bottom = 244.0
+text = "Channel 1"
+items = [ "Channel 1", null, false, 0, null, "Channel 2", null, false, 1, null ]
+selected = 0
+
+[node name="BlockLengthSelect" type="OptionButton" parent="MainMargin/Main/ElementContainer/Buttons"]
+margin_top = 248.0
+margin_right = 150.0
+margin_bottom = 268.0
+text = "30 Minutes"
+items = [ "30 Minutes", null, false, 0, null, "60 Minutes", null, false, 1, null ]
+selected = 0
+
+[node name="TrackView" type="Tree" parent="MainMargin/Main"]
+margin_top = 326.0
+margin_right = 600.0
+margin_bottom = 532.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+columns = 5
+hide_folding = true
+hide_root = true
+script = ExtResource( 2 )
+
+[node name="StyleSelect" type="OptionButton" parent="MainMargin/Main"]
+margin_top = 536.0
+margin_right = 600.0
+margin_bottom = 556.0
+script = ExtResource( 8 )
+
+[node name="BlockLength" type="ProgressBar" parent="MainMargin/Main"]
+margin_top = 560.0
+margin_right = 600.0
+margin_bottom = 580.0
+rect_min_size = Vector2( 0, 20 )
+max_value = 1.8e+06
+step = 1.0
+allow_greater = true
+percent_visible = false
+script = ExtResource( 1 )
+
+[node name="BlockLengthLabel" type="Label" parent="MainMargin/Main/BlockLength"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 3.0
+margin_top = 4.0
+margin_right = -2.0
+margin_bottom = -2.0
+text = "1800000 / 1800000"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TrackSelect" parent="." instance=ExtResource( 4 )]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = 250.0
+
+[node name="PreviewSelect" parent="." instance=ExtResource( 7 )]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -250.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = 250.0
+
+[node name="SaveFile" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -150.0
+margin_right = 200.0
+margin_bottom = 150.0
+window_title = "Save Showblock"
+resizable = true
+access = 2
+current_dir = "/Projects/_Godot/GHABE2"
+current_path = "/Projects/_Godot/GHABE2/"
+
+[node name="LoadFile" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -150.0
+margin_right = 200.0
+margin_bottom = 150.0
+window_title = "Open a File"
+resizable = true
+mode = 0
+access = 2
+current_dir = "/Projects/_Godot/GHABE2"
+current_file = "Users"
+current_path = "/Projects/_Godot/GHABE2/Users"
+
+[node name="Warning" type="AcceptDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -60.0
+margin_right = 150.0
+margin_bottom = 60.0
+window_title = "Warning"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="item_selected" from="MainMargin/Main/ElementContainer/ElementView" to="MainMargin/Main" method="_update_track_view"]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/AddSong" to="." method="_show_track_select" binds= [ 0 ]]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/AddAdvert" to="." method="_show_track_select" binds= [ 1 ]]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/AddPreview" to="." method="_show_preview_select"]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/EditElement" to="." method="_edit_element"]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/RemoveElement" to="MainMargin/Main" method="remove_element_from_block"]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/MoveElementUp" to="MainMargin/Main" method="move_element_in_block" binds= [ -1 ]]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/MoveElementDown" to="MainMargin/Main" method="move_element_in_block" binds= [ 1 ]]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/LoadShowblock" to="." method="_show_load_file"]
+[connection signal="pressed" from="MainMargin/Main/ElementContainer/Buttons/SaveShowblock" to="." method="_show_save_file"]
+[connection signal="item_selected" from="MainMargin/Main/ElementContainer/Buttons/ChannelSelect" to="MainMargin/Main" method="change_channel"]
+[connection signal="item_selected" from="MainMargin/Main/ElementContainer/Buttons/BlockLengthSelect" to="MainMargin/Main" method="change_block_size"]
+[connection signal="item_edited" from="MainMargin/Main/TrackView" to="MainMargin/Main" method="_edit_track"]
+[connection signal="item_selected" from="MainMargin/Main/StyleSelect" to="MainMargin/Main" method="_set_style"]
+[connection signal="confirmed" from="TrackSelect" to="." method="_track_selected"]
+[connection signal="confirmed" from="PreviewSelect" to="." method="_preview_tracks_selected"]
+[connection signal="file_selected" from="SaveFile" to="MainMargin/Main" method="save_block_to_file"]
+[connection signal="file_selected" from="LoadFile" to="." method="_return_load_path"]
